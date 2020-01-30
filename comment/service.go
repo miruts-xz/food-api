@@ -1,6 +1,6 @@
 package comment
 
-import "github.com/betsegawlemma/restaurant-rest/entity"
+import "github.com/miruts/food-api/entity"
 
 // CommentService specifies customer comment related service
 type CommentService interface {

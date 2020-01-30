@@ -1,10 +1,6 @@
 package repository
 
-import (
-	"github.com/betsegawlemma/restaurant-rest/entity"
-	"github.com/betsegawlemma/restaurant-rest/order"
-	"github.com/jinzhu/gorm"
-)
+import ()
 
 // OrderGormRepo implements the menu.OrderRepository interface
 type OrderGormRepo struct {

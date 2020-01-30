@@ -3,8 +3,6 @@ package repository
 import (
 	"database/sql"
 	"errors"
-
-	"github.com/betsegawlemma/restaurant-rest/entity"
 )
 
 // CategoryRepositoryImpl implements the menu.CategoryRepository interface

@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"github.com/betsegawlemma/restaurant/entity"
-	"github.com/betsegawlemma/restaurant/user"
 	"github.com/jinzhu/gorm"
+	"github.com/miruts/food-api/entity"
+	"github.com/miruts/food-api/user"
 )
 
 // RoleGormRepo implements the menu.RoleRepository interface

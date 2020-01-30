@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"github.com/betsegawlemma/restaurant-rest/comment"
-	"github.com/betsegawlemma/restaurant-rest/entity"
 	"github.com/jinzhu/gorm"
+	"github.com/miruts/food-api/comment"
+	"github.com/miruts/food-api/entity"
 )
 
 // CommentGormRepo implements menu.CommentRepository interface

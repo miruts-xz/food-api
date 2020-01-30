@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/betsegawlemma/restaurant-rest/comment"
-	"github.com/betsegawlemma/restaurant-rest/entity"
+	"github.com/miruts/food-api/comment"
+	"github.com/miruts/food-api/entity"
 )
 
 // CommentService implements menu.CommentService interface

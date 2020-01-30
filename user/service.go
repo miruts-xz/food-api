@@ -1,6 +1,6 @@
 package user
 
-import "github.com/betsegawlemma/restaurant/entity"
+import "github.com/miruts/food-api/entity"
 
 // UserService specifies application user related services
 type UserService interface {

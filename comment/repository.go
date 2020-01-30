@@ -1,6 +1,6 @@
 package comment
 
-import "github.com/betsegawlemma/restaurant-rest/entity"
+import "github.com/miruts/food-api/entity"
 
 // CommentRepository specifies customer comment related database operations
 type CommentRepository interface {

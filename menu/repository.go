@@ -1,6 +1,6 @@
 package menu
 
-import "github.com/betsegawlemma/restaurant-rest/entity"
+import "github.com/miruts/food-api/entity"
 
 // CategoryRepository specifies food menu category database operations
 type CategoryRepository interface {

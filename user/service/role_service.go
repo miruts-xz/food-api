@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/betsegawlemma/restaurant/entity"
-	"github.com/betsegawlemma/restaurant/user"
+	"github.com/miruts/food-api/entity"
+	"github.com/miruts/food-api/user"
 )
 
 // RoleService implements menu.RoleService interface

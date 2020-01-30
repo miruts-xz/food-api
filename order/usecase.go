@@ -1,6 +1,6 @@
 package order
 
-import "github.com/betsegawlemma/restaurant-rest/entity"
+import "github.com/miruts/food-api/entity"
 
 //OrderService specifies customer menu order related services
 type OrderService interface {

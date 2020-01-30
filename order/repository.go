@@ -1,6 +1,6 @@
 package order
 
-import "github.com/betsegawlemma/restaurant-rest/entity"
+import "github.com/miruts/food-api/entity"
 
 // OrderRepository specifies customer menu order related database operations
 type OrderRepository interface {

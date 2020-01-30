@@ -2,10 +2,9 @@ package handler
 
 import (
 	"encoding/json"
-	"net/http"
-
-	"github.com/betsegawlemma/restaurant-rest/user"
 	"github.com/julienschmidt/httprouter"
+	"github.com/miruts/food-api/user"
+	"net/http"
 )
 
 // AdminRoleHandler is used to implement role related http requests
