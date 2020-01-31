@@ -8,6 +8,7 @@ import (
 	"github.com/miruts/food-api/comment/repository"
 	"github.com/miruts/food-api/comment/service"
 	"github.com/miruts/food-api/delivery/http/handler"
+	"github.com/miruts/food-api/entity"
 	repository3 "github.com/miruts/food-api/menu/repository"
 	service3 "github.com/miruts/food-api/menu/service"
 	repository4 "github.com/miruts/food-api/order/repository"
@@ -42,7 +43,7 @@ func main() {
 		port = "5000"
 	}
 
-	//dbconn.CreateTable(&entity.Category{}, &entity.Ingredient{}, &entity.Item{}, &entity.Order{}, &entity.Role{}, &entity.Error{}, &entity.User{}, &entity.Comment{})
+	dbconn.AutoMigrate(&entity.User{}, &entity.Order{})
 
 	commentRepo := repository.NewCommentGormRepo(dbconn)
 	menuRepo := repository3.NewCategoryGormRepo(dbconn)

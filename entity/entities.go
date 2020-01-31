@@ -53,7 +53,7 @@ type User struct {
 	Phone    string `json:"phone" gorm:"type:varchar(100);not null; unique"`
 	Password string `json:"password" gorm:"type:varchar(255)"`
 	Roles    []Role `json:"roles" gorm:"many2many:user_roles"`
-	Orders   []Order `json:"orders" gorm:"many2many:user_orders"`
+	Orders   []Order `json:"orders"`
 }
 
 // Comment represents comments forwarded by application users
