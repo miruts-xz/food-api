@@ -1,84 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Food API</title>
-</head>
-<body>
-<h1>Welcome to Food API</h1>
+{{define "index"}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Food API</title>
+    </head>
+    <body>
+    <h1>Welcome to Food API</h1>
     <h2>Here are valid endpoints</h2>
     <ul>
         <li>
             <h3>Comment related endpoints</h3>
             <ul>
-                <li>/v1/admin/comments/:id</li>
-                <li>/v1/admin/comments</li>
-                <li>/v1/admin/comments/:id</li>
-                <li>/v1/admin/comments</li>
-                <li>/v1/admin/comments/:id</li>
+                <li>GET /v1/admin/comments/:id</li>
+                <li>GET /v1/admin/comments</li>
+                <li>PUST /v1/admin/comments/:id</li>
+                <li>POST /v1/admin/comments</li>
+                <li>DELETE /v1/admin/comments/:id</li>
             </ul>
         </li>
         <li>
             <h3>Role related endpoints</h3>
             <ul>
-                <li>/v1/admin/roles/:id</li>
-                <li>/v1/admin/roles</li>
-                <li>/v1/admin/roles/:id</li>
-                <li>/v1/admin/roles</li>
-                <li>/v1/admin/roles/:id</li>
+                <li>GET /v1/admin/roles/:id</li>
+                <li>GET /v1/admin/roles</li>
+                <li>PUT /v1/admin/roles/:id</li>
+                <li>POST/v1/admin/roles</li>
+                <li>DELETE /v1/admin/roles/:id</li>
             </ul>
         </li>
         <li>
             <h3>Order related endpoints</h3>
             <ul>
-                <li>/v1/admin/orders/:id</li>
-                <li>/v1/admin/orders</li>
-                <li>/v1/admin/orders/:id</li>
-                <li>/v1/admin/orders</li>
-                <li>/v1/admin/orders/:id</li>
+                <li>GET /v1/admin/orders/:id</li>
+                <li>GET /v1/admin/orders</li>
+                <li>PUT /v1/admin/orders/:id</li>
+                <li>POST /v1/admin/orders</li>
+                <li>DELETE /v1/admin/orders/:id</li>
             </ul>
         </li>
         <li>
             <h3>User related endpoints</h3>
             <ul>
-                <li>/v1/admin/users/:id</li>
-                <li>/v1/admin/users</li>
-                <li>/v1/admin/users/:id</li>
-                <li>/v1/admin/users</li>
-                <li>/v1/admin/users/:id</li>
+                <li>GET /v1/admin/users/:id</li>
+                <li>GET /v1/admin/users</li>
+                <li>PUT /v1/admin/users/:id</li>
+                <li>POST /v1/admin/users</li>
+                <li>DELETE /v1/admin/users/:id</li>
             </ul>
         </li>
         <li>
             <h3>Category related endpoints</h3>
             <ul>
-                <li>/v1/admin/categories/:id</li>
-                <li>/v1/admin/categories</li>
-                <li>/v1/admin/categories/:id</li>
-                <li>/v1/admin/categories</li>
-                <li>/v1/admin/categories/:id</li>
+                <li>GET /v1/admin/categories/:id</li>
+                <li>GET /v1/admin/categories</li>
+                <li>PUT /v1/admin/categories/:id</li>
+                <li>POST /v1/admin/categories</li>
+                <li>DELETE /v1/admin/categories/:id</li>
             </ul>
         </li>
         <li>
             <h3>item related endpoints</h3>
             <ul>
-                <li>/v1/admin/items/:id</li>
-                <li>/v1/admin/items</li>
-                <li>/v1/admin/items/:id</li>
-                <li>/v1/admin/items</li>
-                <li>/v1/admin/items/:id</li>
+                <li>GET /v1/admin/items/:id</li>
+                <li>GET /v1/admin/items</li>
+                <li>PUT /v1/admin/items/:id</li>
+                <li>POST /v1/admin/items</li>
+                <li>DELETE /v1/admin/items/:id</li>
             </ul>
         </li>
         <li>
             <h3>Ingredient related endpoints</h3>
             <ul>
-                <li>/v1/admin/ingredients/:id</li>
-                <li>/v1/admin/ingredients</li>
-                <li>/v1/admin/ingredients/:id</li>
-                <li>/v1/admin/ingredients</li>
-                <li>/v1/admin/ingredients/:id</li>
+                <li>GET /v1/admin/ingredients/:id</li>
+                <li>GET /v1/admin/ingredients</li>
+                <li>PUT /v1/admin/ingredients/:id</li>
+                <li>POST /v1/admin/ingredients</li>
+                <li>DELETE /v1/admin/ingredients/:id</li>
             </ul>
         </li>
     </ul>
 
-</body>
-</html>
+    </body>
+    </html>
+{{end}}
