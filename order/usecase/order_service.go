@@ -53,7 +53,7 @@ func (os *OrderService) UpdateOrder(order *entity.Order) (*entity.Order, []error
 
 // DeleteOrder deletes a given order
 func (os *OrderService) DeleteOrder(id uint) (*entity.Order, []error) {
-	ord, errs := os.DeleteOrder(id)
+	ord, errs := os.orderRepo.DeleteOrder(id)
 	if len(errs) > 0 {
 		return nil, errs
 	}
