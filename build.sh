@@ -9,4 +9,4 @@ go get github.com/miruts/food-api/user/service
 go get github.com/miruts/food-api/order/service
 go get github.com/miruts/food-api/menu/service
 go get github.com/miruts/food-api/entity
-go build -o bin/application application.go
+go build -o bin/application bin/application.go
