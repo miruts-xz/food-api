@@ -23,6 +23,11 @@ func (cRepo *CategoryGormRepo) Categories() ([]entity.Category, []error) {
 	if len(errs) > 0 {
 		return nil, errs
 	}
+	for i, c := range ctgs {
+		items := []entity.Item{}
+		_ = cRepo.conn.Model(&c).Related(&items, "Items").GetErrors()
+		ctgs[i].Items = items
+	}
 	return ctgs, errs
 }
 

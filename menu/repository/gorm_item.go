@@ -29,10 +29,16 @@ func (itemRepo *ItemGormRepo) Items() ([]entity.Item, []error) {
 // Item retrieves a food menu by its id from the database
 func (itemRepo *ItemGormRepo) Item(id uint) (*entity.Item, []error) {
 	item := entity.Item{}
+	ings := []entity.Ingredient{}
+	categs := []entity.Category{}
 	errs := itemRepo.conn.First(&item, id).GetErrors()
 	if len(errs) > 0 {
 		return nil, errs
 	}
+	_ = itemRepo.conn.Model(&item).Related(&categs,"Categories")
+	_ = itemRepo.conn.Model(&item).Related(&ings, "Ingredients")
+	item.Ingredients = ings
+	item.Categories = categs
 	return &item, errs
 }
 
@@ -53,7 +59,6 @@ func (itemRepo *ItemGormRepo) DeleteItem(id uint) (*entity.Item, []error) {
 	if len(errs) > 0 {
 		return nil, errs
 	}
-
 	errs = itemRepo.conn.Delete(itm, id).GetErrors()
 	if len(errs) > 0 {
 		return nil, errs
