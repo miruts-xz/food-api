@@ -57,6 +57,8 @@ func main() {
 	router.PUT("/v1/admin/comments/:id", adminCommentHandler.PutComment)
 	router.POST("/v1/admin/comments", adminCommentHandler.PostComment)
 	router.DELETE("/v1/admin/comments/:id", adminCommentHandler.DeleteComment)
+	router.GET("/favicon.ico", adminCommentHandler.GetComments)
+	router.GET("/", adminCommentHandler.GetComments)
 
 	http.ListenAndServe(":"+port, router)
 }
