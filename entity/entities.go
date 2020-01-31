@@ -20,7 +20,7 @@ type Role struct {
 // Item represents food menu items
 type Item struct {
 	ID          uint `json:"id"`
-	Name        string `gorm:"type:varchar(255);not null"`
+	Name        string `json:"name" gorm:"type:varchar(255);not null"`
 	Price       float32 `json:"price"`
 	Description string `json:"description"`
 	Categories  []Category   `json:"categories" gorm:"many2many:item_categories"`
