@@ -1,7 +1,5 @@
 go get github.com/jinzhu/gorm
 go get github.com/julienschmidt/httprouter
-go get github.com/miruts/food-api/comment/repository
-go get github.com/miruts/food-api/comment/service
 go get github.com/jinzhu/gorm/dialects/postgres
 go get github.com/miruts/food-api/delivery/http/handler
 go get github.com/miruts/food-api/user/repository
