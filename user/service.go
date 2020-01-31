@@ -9,6 +9,7 @@ type UserService interface {
 	UpdateUser(user *entity.User) (*entity.User, []error)
 	DeleteUser(id uint) (*entity.User, []error)
 	StoreUser(user *entity.User) (*entity.User, []error)
+	UserByUsername(uname string) (*entity.User, []error)
 }
 
 // RoleService speifies application user role related services

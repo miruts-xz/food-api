@@ -113,6 +113,7 @@ func main() {
 	router.DELETE("/v1/admin/ingredients/:id", adminIngredientHandler.DeleteIngredient)
 
 
+	router.GET("/v1/admin/username/:username", adminUserHandler.GetByUsername)
 	router.GET("/v1/admin/users/:id", adminUserHandler.GetSingleUser)
 	router.GET("/v1/admin/users", adminUserHandler.GetUsers)
 	router.PUT("/v1/admin/users/:id", adminUserHandler.PutUser)

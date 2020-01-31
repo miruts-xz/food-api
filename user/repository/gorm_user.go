@@ -68,3 +68,11 @@ func (userRepo *UserGormRepo) StoreUser(user *entity.User) (*entity.User, []erro
 	}
 	return usr, errs
 }
+func (userRepo *UserGormRepo) UserByUsername(uname string) (*entity.User, []error) {
+	usr := &entity.User{}
+	errs := userRepo.conn.Where("username = ?", uname).First(usr).GetErrors()
+	if len(errs) > 0 {
+		return nil, errs
+	}
+	return usr, errs
+}

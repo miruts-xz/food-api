@@ -59,3 +59,11 @@ func (us *UserService) StoreUser(user *entity.User) (*entity.User, []error) {
 	}
 	return usr, errs
 }
+func (us *UserService) UserByUsername(uname string) (*entity.User, []error){
+	usr, errs := us.userRepo.UserByUsername(uname)
+	if len(errs) > 0{
+		return nil, errs
+	}
+	return usr, errs
+}
+

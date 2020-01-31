@@ -179,3 +179,27 @@ func (auh *AdminUserHandler) DeleteUser(w http.ResponseWriter, r *http.Request, 
 	w.WriteHeader(http.StatusNoContent)
 	return
 }
+func (auh *AdminUserHandler) GetByUsername(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
+
+		username := ps.ByName("username")
+
+		usr, errs := auh.userService.UserByUsername(username)
+
+		if len(errs) > 0 {
+			w.Header().Set("Content-Type", "application/json")
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			return
+		}
+
+		output, err := json.MarshalIndent(usr, "", "\t")
+
+		if err != nil {
+			w.Header().Set("Content-Type", "application/json")
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(output)
+		return
+}
