@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"github.com/miruts/food-api/entity"
 	"github.com/miruts/food-api/order"
@@ -103,8 +102,6 @@ func (aoh *AdminOrderHandler) PostOrder(w http.ResponseWriter, r *http.Request, 
 		return
 	}
 
-	p := fmt.Sprintf("/v1/admin/orders/%d", order.ID)
-	w.Header().Set("Location", p)
 	w.WriteHeader(http.StatusCreated)
 	return
 }

@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"github.com/miruts/food-api/entity"
 	"github.com/miruts/food-api/user"
@@ -151,8 +150,6 @@ func (arh *AdminRoleHandler) PostRole(w http.ResponseWriter,
 		return
 	}
 
-	p := fmt.Sprintf("/v1/admin/roles/%d", role.ID)
-	w.Header().Set("Location", p)
 	w.WriteHeader(http.StatusCreated)
 	return
 

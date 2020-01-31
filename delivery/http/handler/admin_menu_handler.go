@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"github.com/miruts/food-api/entity"
 	"github.com/miruts/food-api/menu"
@@ -103,8 +102,6 @@ func (auh *AdminMenuHandler) PostMenu(w http.ResponseWriter, r *http.Request, ps
 		return
 	}
 
-	p := fmt.Sprintf("/v1/admin/menus/%d", menu.ID)
-	w.Header().Set("Location", p)
 	w.WriteHeader(http.StatusCreated)
 	return
 }

@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"github.com/miruts/food-api/comment"
 	"github.com/miruts/food-api/entity"
@@ -103,8 +102,6 @@ func (aih *AdminItemHandle) PostComment(w http.ResponseWriter, r *http.Request, 
 		return
 	}
 
-	p := fmt.Sprintf("/v1/admin/comments/%d", comment.ID)
-	w.Header().Set("Location", p)
 	w.WriteHeader(http.StatusCreated)
 	return
 }
