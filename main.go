@@ -8,6 +8,7 @@ import (
 	"github.com/miruts/food-api/comment/repository"
 	"github.com/miruts/food-api/comment/service"
 	"github.com/miruts/food-api/delivery/http/handler"
+	"github.com/miruts/food-api/entity"
 	repository3 "github.com/miruts/food-api/menu/repository"
 	service3 "github.com/miruts/food-api/menu/service"
 	repository4 "github.com/miruts/food-api/order/repository"
@@ -23,7 +24,7 @@ const (
 	port     = 5432
 	user     = "postgres"
 	password = "ijobspassword"
-	dbname   = "food_api"
+	dbname   = "food"
 )
 
 func main() {
@@ -42,7 +43,7 @@ func main() {
 		port = "5000"
 	}
 
-	//dbconn.CreateTable(&entity.Category{}, &entity.Ingredient{}, &entity.Item{}, &entity.Order{}, &entity.Role{}, &entity.Error{}, &entity.User{}, &entity.Comment{})
+	dbconn.CreateTable(&entity.Category{}, &entity.Ingredient{}, &entity.Item{}, &entity.Order{}, &entity.Role{}, &entity.Error{}, &entity.User{}, &entity.Comment{})
 
 	commentRepo := repository.NewCommentGormRepo(dbconn)
 	menuRepo := repository3.NewCategoryGormRepo(dbconn)
