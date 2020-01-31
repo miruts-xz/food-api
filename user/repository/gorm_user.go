@@ -84,9 +84,15 @@ func (userRepo *UserGormRepo) StoreUser(user *entity.User) (*entity.User, []erro
 }
 func (userRepo *UserGormRepo) UserByUsername(uname string) (*entity.User, []error) {
 	usr := &entity.User{}
+	roles := []entity.Role{}
+	orders := []entity.Order{}
 	errs := userRepo.conn.Where("user_name = ?", uname).First(usr).GetErrors()
 	if len(errs) > 0 {
 		return nil, errs
 	}
+	_ = userRepo.conn.Model(usr).Related(&roles, "Roles")
+	_ = userRepo.conn.Model(usr).Related(&orders, "Orders")
+	usr.Roles = roles
+	usr.Orders = orders
 	return usr, errs
 }
