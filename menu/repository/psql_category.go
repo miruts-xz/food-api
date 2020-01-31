@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"errors"
+	"github.com/miruts/food-api/entity"
 )
 
 // CategoryRepositoryImpl implements the menu.CategoryRepository interface

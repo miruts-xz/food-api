@@ -11,8 +11,8 @@ type CommentService struct {
 }
 
 // NewCommentService returns a new CommentService object
-func NewCommentService(commRepo comment.CommentRepository) comment.CommentService {
-	return &CommentService{commentRepo: commRepo}
+func NewCommentService(commServ comment.CommentRepository) comment.CommentService {
+	return &CommentService{commentRepo: commServ}
 }
 
 // Comments returns all stored comments

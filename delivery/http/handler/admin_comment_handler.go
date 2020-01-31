@@ -10,21 +10,21 @@ import (
 	"strconv"
 )
 
-// AdminCommentHandler handles comment related http requests
-type AdminCommentHandler struct {
-	commentService comment.CommentService
+// AdminUserHandler handles comment related http requests
+type AdminItemHandle struct {
+	itemService comment.CommentService
 }
 
-// NewAdminCommentHandler returns new AdminCommentHandler object
-func NewAdminCommentHandler(cmntService comment.CommentService) *AdminCommentHandler {
-	return &AdminCommentHandler{commentService: cmntService}
+// NewAdminCommentHandler returns new AdminUserHandler object
+func NewAdminCommentHandler(cmntService comment.CommentService) *AdminItemHandle {
+	return &AdminItemHandle{itemService: cmntService}
 }
 
 // GetComments handles GET /v1/admin/comments request
-func (ach *AdminCommentHandler) GetComments(w http.ResponseWriter,
+func (aih *AdminItemHandle) GetComments(w http.ResponseWriter,
 	r *http.Request, _ httprouter.Params) {
 
-	comments, errs := ach.commentService.Comments()
+	comments, errs := aih.itemService.Comments()
 
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")
@@ -47,7 +47,7 @@ func (ach *AdminCommentHandler) GetComments(w http.ResponseWriter,
 }
 
 // GetSingleComment handles GET /v1/admin/comments/:id request
-func (ach *AdminCommentHandler) GetSingleComment(w http.ResponseWriter,
+func (aih *AdminItemHandle) GetSingleComment(w http.ResponseWriter,
 	r *http.Request, ps httprouter.Params) {
 
 	id, err := strconv.Atoi(ps.ByName("id"))
@@ -58,7 +58,7 @@ func (ach *AdminCommentHandler) GetSingleComment(w http.ResponseWriter,
 		return
 	}
 
-	comment, errs := ach.commentService.Comment(uint(id))
+	comment, errs := aih.itemService.Comment(uint(id))
 
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")
@@ -80,7 +80,7 @@ func (ach *AdminCommentHandler) GetSingleComment(w http.ResponseWriter,
 }
 
 // PostComment handles POST /v1/admin/comments request
-func (ach *AdminCommentHandler) PostComment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (aih *AdminItemHandle) PostComment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 	l := r.ContentLength
 	body := make([]byte, l)
@@ -95,7 +95,7 @@ func (ach *AdminCommentHandler) PostComment(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	comment, errs := ach.commentService.StoreComment(comment)
+	comment, errs := aih.itemService.StoreComment(comment)
 
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")
@@ -110,7 +110,7 @@ func (ach *AdminCommentHandler) PostComment(w http.ResponseWriter, r *http.Reque
 }
 
 // PutComment handles PUT /v1/admin/comments/:id request
-func (ach *AdminCommentHandler) PutComment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (aih *AdminItemHandle) PutComment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 	id, err := strconv.Atoi(ps.ByName("id"))
 	if err != nil {
@@ -119,7 +119,7 @@ func (ach *AdminCommentHandler) PutComment(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	comment, errs := ach.commentService.Comment(uint(id))
+	comment, errs := aih.itemService.Comment(uint(id))
 
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")
@@ -135,7 +135,7 @@ func (ach *AdminCommentHandler) PutComment(w http.ResponseWriter, r *http.Reques
 
 	json.Unmarshal(body, &comment)
 
-	comment, errs = ach.commentService.UpdateComment(comment)
+	comment, errs = aih.itemService.UpdateComment(comment)
 
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")
@@ -157,7 +157,7 @@ func (ach *AdminCommentHandler) PutComment(w http.ResponseWriter, r *http.Reques
 }
 
 // DeleteComment handles DELETE /v1/admin/comments/:id request
-func (ach *AdminCommentHandler) DeleteComment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (aih *AdminItemHandle) DeleteComment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 	id, err := strconv.Atoi(ps.ByName("id"))
 
@@ -167,7 +167,7 @@ func (ach *AdminCommentHandler) DeleteComment(w http.ResponseWriter, r *http.Req
 		return
 	}
 
-	_, errs := ach.commentService.DeleteComment(uint(id))
+	_, errs := aih.itemService.DeleteComment(uint(id))
 
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")

@@ -1,6 +1,10 @@
 package repository
 
-import ()
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/miruts/food-api/entity"
+	"github.com/miruts/food-api/menu"
+)
 
 // CategoryGormRepo implements the menu.CategoryRepository interface
 type CategoryGormRepo struct {

@@ -1,6 +1,10 @@
 package repository
 
-import ()
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/miruts/food-api/entity"
+	"github.com/miruts/food-api/menu"
+)
 
 // IngredientGormRepo implements menu.IngredientRepository interface
 type IngredientGormRepo struct {
