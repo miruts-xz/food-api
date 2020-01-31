@@ -23,6 +23,14 @@ func (itemRepo *ItemGormRepo) Items() ([]entity.Item, []error) {
 	if len(errs) > 0 {
 		return nil, errs
 	}
+	for j, i := range items {
+		categs := []entity.Category{}
+		ings := []entity.Ingredient{}
+		_ = itemRepo.conn.Model(&i).Related(&categs, "Categories")
+		_ = itemRepo.conn.Model(&i).Related(&ings, "Ingredients")
+		items[j].Categories = categs
+		items[j].Ingredients = ings
+	}
 	return items, errs
 }
 
