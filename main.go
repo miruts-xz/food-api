@@ -19,11 +19,11 @@ import (
 )
 
 const (
-	host     = "ijobs.cx20b90aqxzy.us-east-1.rds.amazonaws.com"
+	host     = "food-order.cx20b90aqxzy.us-east-1.rds.amazonaws.com"
 	port     = 5432
-	user     = "postgres"
-	password = "ijobspassword"
-	dbname   = "food"
+	user     = "foodorder"
+	password = "foodorder"
+	dbname   = "foodorder"
 )
 
 func main() {
