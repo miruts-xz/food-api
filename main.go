@@ -8,7 +8,6 @@ import (
 	"github.com/miruts/food-api/comment/repository"
 	"github.com/miruts/food-api/comment/service"
 	"github.com/miruts/food-api/delivery/http/handler"
-	"github.com/miruts/food-api/entity"
 	repository3 "github.com/miruts/food-api/menu/repository"
 	service3 "github.com/miruts/food-api/menu/service"
 	repository4 "github.com/miruts/food-api/order/repository"
@@ -28,7 +27,6 @@ const (
 )
 
 func main() {
-	//
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
@@ -42,9 +40,6 @@ func main() {
 	if port == "" {
 		port = "5000"
 	}
-	dbconn.AutoMigrate(&entity.User{})
-	dbconn.CreateTable(&entity.Item{}, &entity.Category{}, &entity.User{}, &entity.Error{}, &entity.Role{}, &entity.Comment{}, &entity.Ingredient{}, &entity.Order{})
-
 	commentRepo := repository.NewCommentGormRepo(dbconn)
 	menuRepo := repository3.NewCategoryGormRepo(dbconn)
 	userRepo := repository2.NewUserGormRepo(dbconn)
@@ -116,6 +111,5 @@ func main() {
 
 	router.GET("/", handler.Index)
 
-	//http.ListenAndServe(":"+port, router)
-	http.ListenAndServe(":80", router)
+	http.ListenAndServe(":"+port, router)
 }
