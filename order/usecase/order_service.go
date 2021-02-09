@@ -62,7 +62,7 @@ func (os *OrderService) DeleteOrder(id uint) (*entity.Order, []error) {
 
 // StoreOrder stores a given order
 func (os *OrderService) StoreOrder(order *entity.Order) (*entity.Order, []error) {
-	ord, errs := os.StoreOrder(order)
+	ord, errs := os.orderRepo.StoreOrder(order)
 	if len(errs) > 0 {
 		return nil, errs
 	}

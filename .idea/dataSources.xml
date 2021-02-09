@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="food@ijobs.cx20b90aqxzy.us-east-1.rds.amazonaws.com" uuid="647b7cb1-5793-4145-8440-c89c8a130787">
+    <data-source source="LOCAL" name="food order" uuid="ac578d43-91bc-4cd3-88f9-86bba80f59ef">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ijobs.cx20b90aqxzy.us-east-1.rds.amazonaws.com:5432/food</jdbc-url>
+      <jdbc-url>jdbc:postgresql://foodorder.cx20b90aqxzy.us-east-1.rds.amazonaws.com:5432/restaurantdb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

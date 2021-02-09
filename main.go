@@ -8,6 +8,7 @@ import (
 	"github.com/miruts/food-api/comment/repository"
 	"github.com/miruts/food-api/comment/service"
 	"github.com/miruts/food-api/delivery/http/handler"
+	"github.com/miruts/food-api/entity"
 	repository3 "github.com/miruts/food-api/menu/repository"
 	service3 "github.com/miruts/food-api/menu/service"
 	repository4 "github.com/miruts/food-api/order/repository"
@@ -19,30 +20,30 @@ import (
 )
 
 const (
-	host     = "food-order.cx20b90aqxzy.us-east-1.rds.amazonaws.com"
+	host     = "foodorder.cx20b90aqxzy.us-east-1.rds.amazonaws.com"
 	port     = 5432
-	user     = "foodorder"
+	user     = "postgres"
 	password = "foodorder"
-	dbname   = "foodorder"
+	dbname   = "restaurantdb"
 )
 
 func main() {
-
+	//
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
 	dbconn, err := gorm.Open("postgres", psqlInfo)
+	//dbconn, err := gorm.Open("postgres", "postgres://postgres:postgres@localhost/restaurantdb?sslmode=disable")
 	if err != nil {
 		panic(err)
 	}
 	defer dbconn.Close()
-
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "5000"
 	}
-
-	//dbconn.AutoMigrate(&entity.User{}, &entity.Order{})
+	dbconn.AutoMigrate(&entity.User{})
+	dbconn.CreateTable(&entity.Item{}, &entity.Category{}, &entity.User{}, &entity.Error{}, &entity.Role{}, &entity.Comment{}, &entity.Ingredient{}, &entity.Order{})
 
 	commentRepo := repository.NewCommentGormRepo(dbconn)
 	menuRepo := repository3.NewCategoryGormRepo(dbconn)
@@ -70,13 +71,11 @@ func main() {
 
 	router := httprouter.New()
 
-
 	router.GET("/v1/admin/comments/:id", adminCommentHandler.GetSingleComment)
 	router.GET("/v1/admin/comments", adminCommentHandler.GetComments)
 	router.PUT("/v1/admin/comments/:id", adminCommentHandler.PutComment)
 	router.POST("/v1/admin/comments", adminCommentHandler.PostComment)
 	router.DELETE("/v1/admin/comments/:id", adminCommentHandler.DeleteComment)
-
 
 	router.GET("/v1/admin/roles/:id", adminRoleHandler.GetSingleRole)
 	router.GET("/v1/admin/roles", adminRoleHandler.GetRoles)
@@ -84,13 +83,11 @@ func main() {
 	router.POST("/v1/admin/roles", adminRoleHandler.PostRole)
 	router.DELETE("/v1/admin/roles/:id", adminRoleHandler.DeleteRole)
 
-
 	router.GET("/v1/admin/categories/:id", adminMenuHandler.GetSingleMenu)
 	router.GET("/v1/admin/categories", adminMenuHandler.GetMenus)
 	router.PUT("/v1/admin/categories/:id", adminMenuHandler.PutMenu)
 	router.POST("/v1/admin/categories", adminMenuHandler.PostMenu)
 	router.DELETE("/v1/admin/categories/:id", adminMenuHandler.DeleteMenu)
-
 
 	router.GET("/v1/admin/orders/:id", adminOrderHandler.GetSingleOrder)
 	router.GET("/v1/admin/orders", adminOrderHandler.GetOrders)
@@ -98,20 +95,17 @@ func main() {
 	router.POST("/v1/admin/orders", adminOrderHandler.PostOrder)
 	router.DELETE("/v1/admin/orders/:id", adminOrderHandler.DeleteOrder)
 
-
 	router.GET("/v1/admin/items/:id", adminItemHandler.GetSingleItem)
 	router.GET("/v1/admin/items", adminItemHandler.GetItems)
 	router.PUT("/v1/admin/items/:id", adminItemHandler.PutItems)
 	router.POST("/v1/admin/items", adminItemHandler.PostItem)
 	router.DELETE("/v1/admin/items/:id", adminItemHandler.DeleteItem)
 
-
 	router.GET("/v1/admin/ingredients/:id", adminIngredientHandler.GetSingleIngredient)
 	router.GET("/v1/admin/ingredients", adminIngredientHandler.GetIngredients)
 	router.PUT("/v1/admin/ingredients/:id", adminIngredientHandler.PutIIngredients)
 	router.POST("/v1/admin/ingredients", adminIngredientHandler.PostIngredient)
 	router.DELETE("/v1/admin/ingredients/:id", adminIngredientHandler.DeleteIngredient)
-
 
 	router.GET("/v1/admin/username/:username", adminUserHandler.GetByUsername)
 	router.GET("/v1/admin/users/:id", adminUserHandler.GetSingleUser)
@@ -122,5 +116,6 @@ func main() {
 
 	router.GET("/", handler.Index)
 
-	http.ListenAndServe(":"+port, router)
+	//http.ListenAndServe(":"+port, router)
+	http.ListenAndServe(":80", router)
 }
