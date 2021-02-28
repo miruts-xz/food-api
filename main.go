@@ -19,10 +19,10 @@ import (
 )
 
 const (
-	host     = "foodorder.cx20b90aqxzy.us-east-1.rds.amazonaws.com"
+	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
-	password = "foodorder"
+	password = "postgres"
 	dbname   = "restaurantdb"
 )
 

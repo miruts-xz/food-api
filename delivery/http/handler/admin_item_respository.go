@@ -22,6 +22,12 @@ func NewAdminItemHandler(itemService menu.ItemService) *AdminItemHandler {
 // GetComments handles GET /v1/admin/comments request
 func (aingh *AdminItemHandler) GetItems(w http.ResponseWriter,
 	r *http.Request, _ httprouter.Params) {
+	var apiKey = r.Header.Get("api-key")
+	if apiKey == "" || (apiKey != adminApiKey && apiKey != userApiKey) {
+		w.Header().Set("Content-Type", "application/json")
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+		return
+	}
 
 	items, errs := aingh.itemService.Items()
 
@@ -47,7 +53,14 @@ func (aingh *AdminItemHandler) GetItems(w http.ResponseWriter,
 
 // GetSingleComment handles GET /v1/admin/comments/:id request
 func (aingh *AdminItemHandler) GetSingleItem(w http.ResponseWriter,
+
 	r *http.Request, ps httprouter.Params) {
+	var apiKey = r.Header.Get("api-key")
+	if apiKey == "" || (apiKey != adminApiKey && apiKey != userApiKey) {
+		w.Header().Set("Content-Type", "application/json")
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+		return
+	}
 
 	id, err := strconv.Atoi(ps.ByName("id"))
 
@@ -80,7 +93,12 @@ func (aingh *AdminItemHandler) GetSingleItem(w http.ResponseWriter,
 
 // PostComment handles POST /v1/admin/comments request
 func (aingh *AdminItemHandler) PostItem(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-
+	var apiKey = r.Header.Get("api-key")
+	if apiKey == "" || apiKey != adminApiKey {
+		w.Header().Set("Content-Type", "application/json")
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+		return
+	}
 	l := r.ContentLength
 	body := make([]byte, l)
 	r.Body.Read(body)
@@ -109,6 +127,12 @@ func (aingh *AdminItemHandler) PostItem(w http.ResponseWriter, r *http.Request, 
 // PutComment handles PUT /v1/admin/comments/:id request
 func (aingh *AdminItemHandler) PutItems(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
+	var apiKey = r.Header.Get("api-key")
+	if apiKey == "" || apiKey != adminApiKey {
+		w.Header().Set("Content-Type", "application/json")
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+		return
+	}
 	id, err := strconv.Atoi(ps.ByName("id"))
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
@@ -156,6 +180,12 @@ func (aingh *AdminItemHandler) PutItems(w http.ResponseWriter, r *http.Request, 
 // DeleteComment handles DELETE /v1/admin/comments/:id request
 func (aingh *AdminItemHandler) DeleteItem(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
+	var apiKey = r.Header.Get("api-key")
+	if apiKey == "" || apiKey != adminApiKey {
+		w.Header().Set("Content-Type", "application/json")
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+		return
+	}
 	id, err := strconv.Atoi(ps.ByName("id"))
 
 	if err != nil {
