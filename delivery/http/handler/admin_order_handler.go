@@ -120,8 +120,10 @@ func (aoh *AdminOrderHandler) PostOrder(w http.ResponseWriter, r *http.Request, 
 		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
+	output, err := json.MarshalIndent(order, "", "\t")
 
 	w.WriteHeader(http.StatusCreated)
+	w.Write(output)
 	return
 }
 

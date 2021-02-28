@@ -43,6 +43,13 @@ const (
 	PROCESSED  OrderState = "PROCESSED"
 )
 
+type UserKeys struct {
+	uuid string `json:"uuid"`
+}
+type AdminKeys struct {
+	uuid string `json:"uuid"`
+}
+
 // Order represents customer order
 type Order struct {
 	ID         uint       `json:"id"`
@@ -63,6 +70,7 @@ type User struct {
 	Password string  `json:"password" gorm:"type:varchar(255)"`
 	Roles    []Role  `json:"roles" gorm:"many2many:user_roles"`
 	Orders   []Order `json:"orders"`
+	ApiKey   string  `json:"api_key"`
 }
 
 // Comment represents comments forwarded by application users

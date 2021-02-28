@@ -102,6 +102,7 @@ func (auh *AdminUserHandler) PostUser(w http.ResponseWriter, r *http.Request, ps
 	l := r.ContentLength
 	body := make([]byte, l)
 	r.Body.Read(body)
+
 	user := &entity.User{}
 
 	err := json.Unmarshal(body, user)
@@ -119,8 +120,9 @@ func (auh *AdminUserHandler) PostUser(w http.ResponseWriter, r *http.Request, ps
 		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
-
+	output, err := json.MarshalIndent(user, "", "\t")
 	w.WriteHeader(http.StatusCreated)
+	w.Write(output)
 	return
 }
 
