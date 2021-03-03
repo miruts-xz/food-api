@@ -41,7 +41,7 @@ func main() {
 	if port == "" {
 		port = "5000"
 	}
-	dbconn.CreateTable(&entity.UserKeys{}, &entity.AdminKeys{})
+	dbconn.AutoMigrate(&entity.User{})
 
 	commentRepo := repository.NewCommentGormRepo(dbconn)
 	menuRepo := repository3.NewCategoryGormRepo(dbconn)
